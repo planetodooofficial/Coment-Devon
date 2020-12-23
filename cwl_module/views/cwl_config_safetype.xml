@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+            <!-- ######################### Config - Safety Type ######################### -->
+      <!-- Config - Safety Type Tree -->
+    <record model="ir.ui.view" id="cwl_module.view_config_safe_type_tree">
+      <field name="name">config safety types</field>
+      <field name="model">cwl.module.conf.safe.type</field>
+      <field name="arch" type="xml">
+        <tree string="Safety Types">
+          <field name="conf_type_name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Config - Safety Type Form View -->
+    <record model="ir.ui.view" id="cwl_module.view_config_safe_type_form">
+      <field name="name">config safety types</field>
+      <field name="model">cwl.module.conf.safe.type</field>
+      <field name="arch" type="xml">
+        <form string="Safety Types">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="conf_type_name" readonly="1"/>
+              </h1>
+            </div>
+            <br/>
+              <group>
+                <field name="conf_type_name"/>
+              </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Safety Near Misses Action Call -->
+    <record model="ir.actions.act_window" id="cwl_module.action_config_safe_type">
+      <field name="name">Safety Types</field>
+      <field name="res_model">cwl.module.conf.safe.type</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    </data>
+</odoo>

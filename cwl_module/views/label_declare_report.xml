@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <!-- NAME & FILE_NAME should be the same -->
+                <report
+                    id="report_project_task_label_declare"
+                    model="project.task"
+                    report_type="qweb-pdf"
+                    string="Task Label"
+                    name="cwl_module.report_project_task_label"
+                    file="cwl_module.report_project_task_label"
+                />
+
+                <report
+                    id="report_product_lot_label_declare"
+                    model="stock.production.lot"
+                    report_type="qweb-pdf"
+                    string="Product Lot Label"
+                    name="cwl_module.report_product_lot_label"
+                    file="cwl_module.report_product_lot_label"
+                />
+
+                    <report
+                    id="report_delivery_label_declare"
+                    model="stock.picking"
+                    report_type="qweb-pdf"
+                    string="Print Product Labels"
+                    name="cwl_module.report_delivery_label"
+                    file="cwl_module.report_delivery_label"
+                />
+    </data>
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="cwl_module.report_delivery_label">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="has_serial_number" t-value="doc.move_line_ids.mapped('lot_id')"/>
+                    <t t-if="doc.state =='done'">
+                        <t t-foreach="doc.move_line_ids" t-as="move_line">
+                            <div class="page" style="page-break-before: always;">
+                                <table style="width:100%;">
+                                    <tr style="font-size: 40px;">
+                                        <td><center><b><span t-field="move_line.product_id.barcode"/></b></center></td>
+                                    </tr>
+                                    <tr style="font-size: 20px;">
+                                        <td><center><u><span t-field="move_line.product_id.name"/></u></center></td>
+                                    </tr>
+                                </table>
+                                <table style="width:80%">
+                                    <tr>
+                                        <td style="font-size: 15px; width = 50px;"><left> PO# </left></td>
+                                        <td style="font-size: 22px"><center><b><span t-field="doc.origin"/></b></center></td>
+                                    </tr>
+                                </table>
+                                <table style="width:100%">
+                                    <tr>
+<!--                                        <tr>-->
+                                            <td style="font-size:15px; width:50px;"><left> Heat #: </left></td>
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+                                            <td style="border: 2px solid black; border-radius: 5px;font-weight:bold; font-size: 35px;"><center><span t-field="move_line.lot_id.name"/></center></td>
+<!--                                        </tr>-->
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="footer">
+                                <table style="width:100%;">
+                                    <tr style="font-size: 15    px;">
+
+<!--                                        <td><right><span t-field="doc.date_done"/></right></td>-->
+                                        <td><center><span t-esc="doc.date_done.strftime('%d/%m/%Y')"/></center></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </t>
+                    </t>
+                    <t t-if="doc.state !='done'">
+                        <h1>NOT COMPLETE</h1>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="employee_portal_assets_backend" name="Project Task Change" inherit_id="web.assets_frontend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/employee_portal/static/src/js/onchange_task.js"></script>
+                <script type="text/javascript" src="/employee_portal/static/src/js/onchange_lot.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

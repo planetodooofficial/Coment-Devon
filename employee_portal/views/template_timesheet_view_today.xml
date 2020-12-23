@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="employee_timesheet_view" name="Timesheet View">
+        <t t-call="website.layout">
+            <div class="oe_structure"/>
+            <div class="container">
+                <div>
+                    <script>
+                        function startTime() {
+                        var today = new Date();
+                        var h = today.getHours();
+                        var m = today.getMinutes();
+                        var s = today.getSeconds();
+                        m = checkTime(m);
+                        s = checkTime(s);
+                        document.getElementById('txt').innerHTML =
+                        h + ":" + m + ":" + s;
+                        document.getElementById("datetime").innerHTML = today.toLocaleDateString();
+                        var t = setTimeout(startTime, 500);
+                        }
+                        function checkTime(i) {
+                        if (i &lt; 10) {i = "0" + i};  // add zero in front of numbers &lt; 10
+                        return i;
+                        }
+                    </script>
+                    <body onload="startTime()">
+                        <div class="col-lg-12" style="font-family:verdana;font-size:120%;">
+                            <strong>Date:</strong> <span id="datetime"/>
+                            <strong>Time:</strong> <span id="txt"/>
+                        </div>
+                    </body>
+                </div>
+                <div>
+                    <style>
+                        table {
+                        font-family: arial, sans-serif;
+                        }
+                        td, th{
+                        text-align:center;
+                        }
+                        .btn-primary{
+                        color: #fff;
+                        background-color: #7C7BAD;
+                        border-color: #7C7BAD;
+                        }
+                        .btn-primary:hover{
+                        color: #fff;
+                        background-color: #7C7BAD;
+                        border-color: #7C7BAD;
+                        }
+                        a{
+                        color: #5f5e97;
+                        }
+                        a:hover{
+                        color: #5f5e97;
+                        }
+                        .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+                        color: #fff;
+                        background-color: #5f5e97;
+                        border-color: #5f5e97;
+                        }
+                    </style>
+                    <div class="col-lg-12 s_title pt16 pb16">
+                        <h1>Today's TimeSheet</h1>
+                    </div>
+                    <div class="col-lg-12">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Project
+                                </th>
+                                <th>
+                                    Project Task
+                                </th>
+                                <th>
+                                    Duration
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                            </tr>
+                            <t t-foreach="timesheets" t-as="sheet">
+                                <tr>
+                                    <td>
+                                        <span><t t-esc="sheet.date"/></span>
+                                    </td>
+                                    <td>
+                                        <span><t t-esc="sheet.description"/></span>
+                                    </td>
+                                    <td>
+                                        <span><t t-esc="sheet.project_id.name"/></span>
+                                    </td>
+                                    <td>
+                                        <span><t t-esc="sheet.task_id.name"/></span>
+                                    </td>
+                                    <td>
+                                        <span><t t-esc="sheet.duration"/></span>
+                                    </td>
+                                    <td>
+                                        <span><t t-esc="sheet.status"/></span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

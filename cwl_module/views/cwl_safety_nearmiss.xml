@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+            <!-- ######################### Safety Near Misses ######################### -->
+      <!-- Safety Near Miss Tree View -->
+    <record model="ir.ui.view" id="cwl_module.view_safety_nearmiss_tree">
+      <field name="name">safety near misses</field>
+      <field name="model">cwl.module.safety.nearmiss</field>
+      <field name="arch" type="xml">
+        <tree string="Near Misses">
+          <field name="nearmiss_id"/>
+          <field name="nearmiss_date"/>
+          <field name="employee_id"/>
+          <field name="nearmiss_type"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Safety Near Misses Form View -->
+    <record model="ir.ui.view" id="cwl_module.view_safety_nearmiss_form">
+      <field name="name">safety near misses</field>
+      <field name="model">cwl.module.safety.nearmiss</field>
+      <field name="arch" type="xml">
+        <form string="Near Misses">
+          <header>
+            <button name="back_to_web" type="object" string="Home" class="oe_highlight" sequence="1"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="nearmiss_id"/>
+              </h1>
+            </div>
+            <br/>
+            <group>
+              <group>
+                <field name="nearmiss_date" required="1" />
+                <field name="nearmiss_type"/>
+              </group>
+              <group>
+                <field name="employee_id" required="1"/>
+                <field name="nearmiss_empl_post"/>
+              </group>
+            </group>
+            <group>
+              <field name="nearmiss_desc"/>
+            </group>
+            <group>
+              <field name="nearmiss_corr"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Safety Near Misses Action Call -->
+    <record model="ir.actions.act_window" id="cwl_module.action_safety_nearmiss">
+      <field name="name">Near Misses</field>
+      <field name="res_model">cwl.module.safety.nearmiss</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    </data>
+</odoo>

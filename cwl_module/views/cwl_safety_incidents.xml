@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+
+    <!-- #########################   Safety Incidents ################################ -->
+
+    <!-- Safety Incident Tree View -->
+    <record model="ir.ui.view" id="cwl_module.view_safety_incident_tree">
+      <field name="name">incident</field>
+      <field name="model">cwl.module.safety.incident</field>
+      <field name="arch" type="xml">
+        <tree string="Incident Reports">
+          <field name="incident_id"/>
+          <field name="incident_empl"/>
+          <field name="incident_date_occr"/>
+          <field name="incident_invest"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Safety Incident Form View -->
+    <record model="ir.ui.view" id="cwl_module.view_safety_incident_form">
+      <field name="name">safety incident</field>
+      <field name="model">cwl.module.safety.incident</field>
+      <field name="arch" type="xml">
+        <form string="Incident Report">
+          <header>
+            <button name="back_to_web" type="object" string="Home" class="oe_highlight" sequence="1"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="incident_id"/>
+              </h1>
+            </div>
+            <br/>
+            <group>
+              <group>
+                <field name="incident_empl" required="1" />
+                <field name="indident_empl_post" readonly="1"/>
+              </group>
+              <group>
+                <field name="incident_date_occr" required="1"/>
+                <field name="incident_locat" required="1"/>
+                <field name="incident_equip"/>
+              </group>
+            </group>
+            <group>
+              <group>
+                <field name="incident_type" required="1"/>
+                <field name="incident_prop" required="1"/>
+                <field name="incident_prevent" required="1"/>
+                <field name="incident_invest"/>
+              </group>
+            </group>
+            <h2><u>Incident Description</u></h2>
+            <group>
+              <field name="incident_desc"/>
+            </group>
+            <br/>
+            <h2><u>Witness Description</u></h2>
+            <group>
+              <field name="incident_wit_comm"/>
+            </group>
+            <group>
+              <group>
+                <field name="incident_wit"/>
+              </group>
+            </group>
+            <br/>
+            <h2><u>Supervisor Description</u></h2>
+            <group>
+              <field name="incident_sup_comm"/>
+            </group>
+            <group>
+              <group>
+                <field name="incident_sup"/>
+              </group>
+            </group>
+            <br/>
+            <h2><u>Corrective Account</u></h2>
+            <group>
+              <group>
+                <field name="incident_corr"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- Safety Incident Action Call -->
+    <record model="ir.actions.act_window" id="cwl_module.action_safety_incident">
+      <field name="name">Incident</field>
+      <field name="res_model">cwl.module.safety.incident</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>

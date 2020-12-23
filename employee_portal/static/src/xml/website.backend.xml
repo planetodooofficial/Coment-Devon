@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="website_gotobuttons" t-extend="website.GoToButtons">
+        <a role="button" href="/employee/portal/" class="btn btn-primary" title="Go to Website">
+            Go to Website
+        </a>
+    </t>
+</templates>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+                name="Configuration"
+                id="cwl_module.config_menu"
+                sequence="40"
+                parent="cwl_module.menu_root"
+                groups=""/>
+    </data>
+</odoo>

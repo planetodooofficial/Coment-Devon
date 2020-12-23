@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.module.category" id="module_category_cwl">
+            <field name="name">CWL</field>
+            <field name="description">Helps you handle your CWL.</field>
+            <field name="sequence">5</field>
+
+    </record>
+
+    <record id="group_portal_user" model="res.groups">
+        <field name="name">Portal User</field>
+        <field name="category_id" ref="employee_portal.module_category_cwl"/>
+    </record>
+    <record id="group_manager_user" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="employee_portal.module_category_cwl"/>
+        <field name="implied_ids" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+
+    <record id="cwl_group_portal_rule_quality" model="ir.rule">
+        <field name="name">CWL Quality Documents</field>
+        <field ref="cwl_module.model_cwl_module_quality_ior" name="model_id"/>
+        <field name="domain_force">[('create_uid','=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+    <record id="cwl_group_portal_rule_nearmiss" model="ir.rule">
+        <field name="name">CWL Nearmiss Documents</field>
+        <field ref="cwl_module.model_cwl_module_safety_nearmiss" name="model_id"/>
+        <field name="domain_force">[('create_uid','=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+    <record id="cwl_group_portal_rule_toolbox" model="ir.rule">
+        <field name="name">CWL toolbox Documents</field>
+        <field ref="cwl_module.model_cwl_module_safety_toolbox" name="model_id"/>
+        <field name="domain_force">[('create_uid','=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+    <record id="cwl_group_portal_rule_hazard" model="ir.rule">
+        <field name="name">CWL hazard Documents</field>
+        <field ref="cwl_module.model_cwl_module_safety_hazard" name="model_id"/>
+        <field name="domain_force">[('create_uid','=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+    <record id="cwl_group_portal_rule_firstaid" model="ir.rule">
+        <field name="name">CWL Firstaid Documents</field>
+        <field ref="cwl_module.model_cwl_module_safety_firstaid" name="model_id"/>
+        <field name="domain_force">[('create_uid','=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+    <record id="cwl_group_manager_rule_incident" model="ir.rule">
+        <field name="name">CWL Incident Documents</field>
+        <field ref="cwl_module.model_cwl_module_safety_incident" name="model_id"/>
+        <field name="domain_force">[('create_uid','=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+    <record id="cwl_group_manager_rule_time" model="ir.rule">
+        <field name="name">CWL Time Documents</field>
+        <field ref="cwl_module.model_cwl_module_timesheet_approval" name="model_id"/>
+        <field name="domain_force">[('create_uid','=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+    <record id="cwl_group_manager_rule_material" model="ir.rule">
+        <field name="name">CWL Material documents</field>
+        <field ref="cwl_module.model_cwl_module_material_approval" name="model_id"/>
+        <field name="domain_force">[('create_uid','=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+</odoo>

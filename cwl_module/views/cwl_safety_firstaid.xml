@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+
+    <!-- #########################   Safety First Aid ################################ -->
+    <!-- Safety First Aid Tree View -->
+    <record model="ir.ui.view" id="cwl_module.view_safety_firstaid_tree">
+      <field name="name">first aid</field>
+      <field name="model">cwl.module.safety.firstaid</field>
+      <field name="arch" type="xml">
+        <tree string="First Aid">
+          <field name="firstaid_id"/>
+          <field name="firstaid_empl"/>
+          <field name="firstaid_date_occr"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Safety First Aid Form View -->
+    <record model="ir.ui.view" id="cwl_module.view_safety_firstaid_form">
+      <field name="name">safety first aid</field>
+      <field name="model">cwl.module.safety.firstaid</field>
+      <field name="arch" type="xml">
+        <form string="First Aid">
+          <header>
+            <button name="back_to_web" type="object" string="Home" class="oe_highlight" sequence="1"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="firstaid_id"/>
+              </h1>
+            </div>
+            <br/>
+            <group>
+              <group>
+                <field name="firstaid_empl" required="1"/>
+                <field name="firstaid_empl_post"/>
+              </group>
+              <group>
+                <field name="firstaid_date_occr" required="1"/>
+                <field name="firstaid_date_rept" required="1"/>
+              </group>
+            </group>
+            <h2><u>Description</u></h2>
+            <group>
+              <field name="firstaid_desc"/>
+            </group>
+            <group>
+              <field name="firstaid_locat"/>
+            </group>
+            <group>
+              <field name="firstaid_cause"/>
+            </group>
+            <group>
+              <field name="firstaid_type"/>
+            </group>
+            <br/>
+            <h2><u>First Aid Provided</u></h2>
+            <group>
+              <group>
+                <field name="firstaid_prov"/>
+              </group>
+              <group>
+                <field name="firstaid_aider"/>
+              </group>
+            </group>
+            <group>
+              <field name="firstaid_prov_desc"/>
+            </group>
+            <br/>
+            <h2><u>Copy Provided to Employee </u></h2>
+            <group>
+              <group>
+                <field name="firstaid_copy"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Safety First Aid Action Call -->
+    <record model="ir.actions.act_window" id="cwl_module.action_safety_firstaid">
+      <field name="name">First Aid</field>
+      <field name="res_model">cwl.module.safety.firstaid</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+  </data>
+</odoo>

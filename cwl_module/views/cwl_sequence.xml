@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="ior_details_record" model="ir.sequence">
+            <field name="name">IOR Sequence</field>
+            <field name="code">Quality_IRO_ID</field>
+            <field name="prefix">IOR-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="nearmiss_details_record" model="ir.sequence">
+            <field name="name">Near Miss Sequence</field>
+            <field name="code">Safety_Nearmiss_ID</field>
+            <field name="prefix">NM-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="toolbox_details_record" model="ir.sequence">
+            <field name="name">Toolbox Talk Sequence</field>
+            <field name="code">Safety_Toolbox_ID</field>
+            <field name="prefix">TT-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+        <record id="hazard_details_record" model="ir.sequence">
+            <field name="name">Hazard Cond Sequence</field>
+            <field name="code">Safety_Hazard_ID</field>
+            <field name="prefix">HC-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="firstaid_details_record" model="ir.sequence">
+            <field name="name">First Aid Sequence</field>
+            <field name="code">Safety_FirstAid_ID</field>
+            <field name="prefix">FA-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="incident_details_record" model="ir.sequence">
+            <field name="name">Incident Sequence</field>
+            <field name="code">Safety_Incident_ID</field>
+            <field name="prefix">IR-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="time_entry_details_record" model="ir.sequence">
+            <field name="name">Time Entry Sequence</field>
+            <field name="code">Time_Entry_ID</field>
+            <field name="prefix">TS-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="material_entry_details_record" model="ir.sequence">
+            <field name="name">Material Entry Sequence</field>
+            <field name="code">Material_Entry_ID</field>
+            <field name="prefix">MAT-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- #################### Top menu item ###################-->
+        <menuitem
+                name="Comet Welding"
+                id="cwl_module.menu_root"
+                web_icon="cwl_module,static/description/icon.png"/>
+        <!-- menu categories -->
+        <menuitem
+                name="Quality"
+                id="cwl_module.quality_menu"
+                sequence="10"
+                parent="cwl_module.menu_root"
+                groups="project.group_project_manager"/>
+        <menuitem
+                name="IOR"
+                id="cwl_module.quality_menu_ior"
+                sequence="10"
+                parent="cwl_module.quality_menu"
+                action="cwl_module.action_quality_ior"/>
+
+        <menuitem
+                name="Safety"
+                id="cwl_module.safety_menu"
+                sequence="20"
+                parent="cwl_module.menu_root"/>
+        <menuitem
+                name="Near Misses"
+                id="cwl_module.safety_menu_nearmiss"
+                parent="cwl_module.safety_menu"
+                sequence="10"
+                action="cwl_module.action_safety_nearmiss"/>
+
+        <menuitem
+                name="Toolbox Talk"
+                id="cwl_module.safety_menu_toolbox"
+                sequence="20"
+                parent="cwl_module.safety_menu"
+                action="cwl_module.action_safety_toolbox"/>
+
+        <menuitem
+                name="Hazard Conditions"
+                id="cwl_module.safety_menu_hazard"
+                sequence="30"
+                parent="cwl_module.safety_menu"
+                action="cwl_module.action_safety_hazard"/>
+
+        <menuitem
+                name="First Aid Reports"
+                id="cwl_module.safety_menu_firstaid"
+                sequence="40"
+                parent="cwl_module.safety_menu"
+                action="cwl_module.action_safety_firstaid"/>
+
+        <menuitem
+                name="Incident Reports"
+                id="cwl_module.safety_menu_incident"
+                sequence="50"
+                parent="cwl_module.safety_menu"
+                action="cwl_module.action_safety_incident"/>
+
+        <!--Planet Odoo-->
+        <menuitem
+                name="Operations"
+                id="cwl_module.operation_menu"
+                sequence="30"
+                parent="cwl_module.menu_root"
+        />
+
+        <menuitem
+                name="Time Entry"
+                id="cwl_module.operations_menu_time_entry"
+                sequence="10"
+                parent="cwl_module.operation_menu"
+                action="cwl_module.action_operation_time_entry"/>
+
+        <menuitem
+                name="Material Entry"
+                id="cwl_module.operations_menu_material"
+                sequence="20"
+                parent="cwl_module.operation_menu"
+                action="cwl_module.action_material_entry"/>
+        <!--Planet Odoo-->
+
+        <menuitem
+                name="Configuration"
+                id="cwl_module.config_menu"
+                sequence="40"
+                parent="cwl_module.menu_root"/>
+
+        <menuitem
+                name="Safety Types"
+                id="cwl_module.config_menu_safe_type"
+                sequence="10"
+                parent="cwl_module.config_menu"
+                action="cwl_module.action_config_safe_type"/>
+
+        <menuitem
+                name="Safety First Aid Types"
+                id="cwl_module.config_menu_safe_firsttype"
+                sequence="20"
+                parent="cwl_module.config_menu"
+                action="cwl_module.action_config_safe_firsttype"/>
+
+    </data>
+</odoo>

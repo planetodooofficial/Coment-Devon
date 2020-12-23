@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="employee_portal" name="Employee Portal">
+        <t t-call="website.layout">
+            <div class="container">
+                <div>
+                    <script>
+                        function startTime() {
+                        var today = new Date();
+                        var h = today.getHours();
+                        var m = today.getMinutes();
+                        var s = today.getSeconds();
+                        m = checkTime(m);
+                        s = checkTime(s);
+                        document.getElementById('txt').innerHTML =
+                        h + ":" + m + ":" + s;
+                        document.getElementById("datetime").innerHTML = today.toLocaleDateString();
+                        var t = setTimeout(startTime, 500);
+                        }
+                        function checkTime(i) {
+                        if (i &lt; 10) {i = "0" + i};  // add zero in front of numbers &lt; 10
+                        return i;
+                        }
+                    </script>
+                    <body onload="startTime()">
+                        <div style="font-family:verdana;font-size:120%;">
+                            <strong>Date:</strong> <span id="datetime"/>
+                            <strong>Time:</strong> <span id="txt"/>
+                        </div>
+                    </body>
+                </div>
+                <div>
+                    <style>
+                        table {
+                        font-family: arial, sans-serif;
+                        }
+                        td, th{
+                        text-align:center;
+                        }
+                        .btn-primary{
+                        color: #fff;
+                        background-color: #7C7BAD;
+                        border-color: #7C7BAD;
+                        }
+                        .btn-primary:hover{
+                        color: #fff;
+                        background-color: #7C7BAD;
+                        border-color: #7C7BAD;
+                        }
+                        a{
+                        color: #5f5e97;
+                        }
+                        a:hover{
+                        color: #5f5e97;
+                        }
+                        .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+                        color: #fff;
+                        background-color: #5f5e97;
+                        border-color: #5f5e97;
+                        }
+                        .btn-primary.disabled, .btn-primary:disabled {
+                        color: #fff;
+                        background-color: #D3D3D3;
+                        border-color: #D3D3D3;
+                        }
+                    </style>
+                    <div>
+                        <h1> </h1>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>
+                                MATERIAL MANAGEMENT
+                            </th>
+                            <th>
+                                MY TIME CARDS
+                            </th>
+                            <th>
+                                SAFETY
+                            </th>
+                            <th>
+                                ACTION LOG
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a style="min-width:150px;min-height:100px;" class="btn btn-primary"
+                                   t-att-href="'/web#menu_id=%s&amp;action=%s&amp;id=%s&amp;view_type=tree&amp;model=cwl.module.material.approval'% ( %(cwl_module.operations_menu_material)d, %(cwl_module.action_material_entry)d, active_ids)">
+                                    <strong>Issue to Project</strong>
+                                </a>
+
+                                <!--                  FIND PRODUCT              -->
+                                <p style="padding-top:30px;">FIND PRODUCT</p>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/product/search_by/barcode/'">
+                                    <strong>By Part ID</strong>
+                                </a>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/product/search_by/description/'">
+                                    <strong>By Description</strong>
+                                </a><br/>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/product/search_by/location/'">
+                                    <strong>By Location</strong>
+                                </a><br/>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/product/search_by/lot/'">
+                                    <strong>By Lot ID</strong>
+                                </a><br/>
+
+                                <!--               CHANGE PRODUCT                 -->
+                                <p style="padding-top:30px;">CHANGE PRODUCT</p>
+                                <a style="min-width:150px;" class="btn btn-primary disabled"
+                                   t-att-href="'/web#menu_id=%s&amp;action=%s&amp;id=%s&amp;view_type=tree&amp;model=cwl.module.safety.nearmiss'% ( %(cwl_module.safety_menu_nearmiss)d, %(cwl_module.action_safety_nearmiss)d, active_ids)">
+                                    <strong>Purchase Req</strong>
+                                </a><br/>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary disabled"
+                                   t-att-href="'/web#menu_id=%s&amp;action=%s&amp;id=%s&amp;view_type=tree&amp;model=cwl.module.safety.nearmiss'% ( %(cwl_module.safety_menu_nearmiss)d, %(cwl_module.action_safety_nearmiss)d, active_ids)">
+                                    <strong>Request Adjustment</strong>
+                                </a><br/>
+                            </td>
+                            <!--MY TIME CARDS	-->
+                            <td>
+                                <a style="min-width:150px;min-height:100px;" class="btn btn-primary"
+                                   t-att-href="'/employee/timeentry/'">
+                                    <strong>+ Create</strong>
+                                </a><br/>
+                                <p> </p>
+                                <p> </p>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/employee/timesheet/view/'">
+                                    <strong>View Today's</strong>
+                                </a><br/>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary disabled">
+                                    <strong>Search</strong>
+                                </a><br/>
+                            </td>
+                            <!--SAFETY-->
+                            <td>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/web#menu_id=%s&amp;action=%s&amp;id=%s&amp;view_type=tree&amp;model=cwl.module.safety.nearmiss'% ( %(cwl_module.safety_menu_nearmiss)d, %(cwl_module.action_safety_nearmiss)d, active_ids)">
+                                    <strong>Near Misses</strong>
+                                </a>
+                                <span> # </span>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/web#menu_id=%s&amp;action=%s&amp;id=%s&amp;view_type=tree&amp;model=cwl.module.safety.toolbox'% ( %(cwl_module.safety_menu_toolbox)d, %(cwl_module.action_safety_toolbox)d, active_ids)">
+                                    <strong>Toolbox Talk</strong>
+                                </a>
+                                <span> # </span>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/web#menu_id=%s&amp;action=%s&amp;id=%s&amp;view_type=tree&amp;model=cwl.module.safety.hazard'% ( %(cwl_module.safety_menu_hazard)d, %(cwl_module.action_safety_hazard)d, active_ids)">
+                                    <strong>Hazard Cond.</strong>
+                                </a>
+                                <span> # </span>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/web#menu_id=%s&amp;action=%s&amp;id=%s&amp;view_type=tree&amp;model=cwl.module.safety.firstaid'% ( %(cwl_module.safety_menu_firstaid)d, %(cwl_module.action_safety_firstaid)d, active_ids)">
+                                    <strong>First Aid</strong>
+                                </a>
+                                <span> # </span>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/web#menu_id=%s&amp;action=%s&amp;id=%s&amp;view_type=tree&amp;model=cwl.module.safety.incident'% ( %(cwl_module.safety_menu_incident)d, %(cwl_module.action_safety_incident)d, active_ids)">
+                                    <strong>Incident</strong>
+                                </a>
+                                <span> # </span>
+                                <p> </p>
+                                <p> </p>
+                                <p> </p>
+                                <!--               QUALITY                 -->
+                                <strong><p style="text-align:center;font-family: arial, sans-serif;">QUALITY</p></strong>
+                                <a style="min-width:150px;" class="btn btn-primary"
+                                   t-att-href="'/web#menu_id=%s&amp;action=%s&amp;id=%s&amp;view_type=tree&amp;model=cwl.module.quality.ior'% ( %(cwl_module.quality_menu_ior)d, %(cwl_module.action_quality_ior)d, active_ids)">
+                                    <strong>IOR</strong>
+                                </a>
+                                <span> # </span>
+                            </td>
+
+                            <!--             ACTION LOG               -->
+                            <td>
+                                <a style="min-width:150px;" class="btn btn-primary disabled"
+                                   t-att-href="'#'">
+                                    <strong>+ Create</strong>
+                                </a>
+                                <p> </p>
+                                <a style="min-width:150px;" class="btn btn-primary disabled"
+                                   t-att-href="'#'">
+                                    <strong>View Open</strong>
+                                </a>
+
+                                <p> </p>
+                                <p> </p>
+
+                                <!--             Open Actions                   -->
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th colspan="2">
+                                            My Open Actions (Click to View)
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>Description</span>
+                                        </td>
+                                        <td>
+                                            <span>Due Date</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

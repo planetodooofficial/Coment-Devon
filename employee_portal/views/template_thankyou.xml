@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="employee_timesheet_form_filled" name="Timesheet Filled">
+        <t t-call="website.layout">
+            <div class="oe_structure" id="oe_structure_website_crm_contact_us_thanks_1"/>
+            <div class="container">
+                <h1>Done!</h1>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="alert alert-success" role="status">
+                            Your time sheet has been sent to approval. It will be approved and it will be updated to your attendance sheet.
+                        </div>
+                        <div>
+                            <a href='/employee/portal/' role="button" class="btn btn-primary btn-lg" >Back to Portal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="employee_material_submit" name="Material Entry">
+        <t t-call="website.layout">
+            <div class="oe_structure" id="oe_structure_website_crm_contact_us_thanks_1"/>
+            <div class="container">
+                <h1>Done!</h1>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="alert alert-success" role="status">
+                            Your material has been sent to approval. It will be approved and it will be updated to the specific projects.
+                        </div>
+                        <div>
+                            <a href='/employee/portal/' role="button" class="btn btn-primary btn-lg" >Back to Portal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

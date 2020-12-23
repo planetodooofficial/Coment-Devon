@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+
+    <!-- #########################  Safety Toolbox Talks######################### -->
+    <!-- Safety Toolbox Talk Form View -->
+    <record model="ir.ui.view" id="cwl_module.view_safety_toolbox_tree">
+      <field name="name">safety toolbox</field>
+      <field name="model">cwl.module.safety.toolbox</field>
+      <field name="arch" type="xml">
+        <tree string="Toolbox Talks">
+          <field name="toolbox_id"/>
+          <field name="toolbox_date"/>
+          <field name="employee_id"/>
+          <field name="toolbox_topic"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Safety Toolbox Talk Form View -->
+    <record model="ir.ui.view" id="cwl_module.view_safety_toolbox_form">
+      <field name="name">safety toolbox</field>
+      <field name="model">cwl.module.safety.toolbox</field>
+      <field name="arch" type="xml">
+        <form string="Toolbox Talks">
+          <header>
+            <button name="back_to_web" type="object" string="Home" class="oe_highlight" sequence="1"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name="toolbox_id"/>
+              </h1>
+            </div>
+            <br/>
+            <group>
+              <group>
+                <field name="toolbox_date" required="1" />
+              </group>
+              <group>
+                <field name="employee_id" required="1"/>
+              </group>
+            </group>
+            <group>
+              <field name="toolbox_topic" required="1"/>
+            </group>
+            <group>
+              <group>
+                <field name="toolbox_unit"/>
+              </group>
+            </group>
+            <group>
+              <field name="toolbox_desc" required="1"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Safety Toolbox talk Action Call -->
+    <record model="ir.actions.act_window" id="cwl_module.action_safety_toolbox">
+      <field name="name">Toolbox Talks</field>
+      <field name="res_model">cwl.module.safety.toolbox</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+  </data>
+</odoo>

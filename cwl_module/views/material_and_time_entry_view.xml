@@ -1,0 +1,224 @@
+<odoo>
+    <data>
+        <!--        OPERATIONS : TIME ENTRY VIEW      -->
+
+        <!-- Start Search View -->
+
+        <record id="timesheet_view_search" model="ir.ui.view">
+            <field name="name">timesheet.view.search</field>
+            <field name="model">cwl.module.timesheet.approval</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="Approval Pending" name="status_pending" domain="[('status', '=', 'pending')]"/>
+                    <filter string="Approval Confirmed" name="status_approved" domain="[('status', '=', 'approved')]"/>
+                </search>
+            </field>
+        </record>
+
+        <!--   END Search View     -->
+
+        <record model="ir.ui.view" id="cwl_module.view_operation_timeentry_tree">
+            <field name="name">time entry</field>
+            <field name="model">cwl.module.timesheet.approval</field>
+            <field name="arch" type="xml">
+                <tree string="Time Entry">
+                    <field name="time_entry_id"/>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <field name="project_id"/>
+                    <field name="task_id"/>
+                    <field name="category_timesheet"/>
+                    <field name="description"/>
+                    <field name="duration"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cwl_module.view_operation_timeentry">
+            <field name="name">Time Entry</field>
+            <field name="model">cwl.module.timesheet.approval</field>
+            <field name="arch" type="xml">
+                <form string="Time Entry">
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                        <button string="Approve TimeEntry" class="oe_highlight" type="object" name="approve_timesheet" groups="project.group_project_manager"
+                                attrs="{'invisible': [('status', '=', 'approved')]}"/>
+                        <button name="back_to_web" type="object" string="Home" class="oe_highlight" sequence="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="time_entry_id"/>
+                            </h1>
+                        </div>
+                        <br/>
+                        <group>
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="date"/>
+                            </group>
+                            <group>
+                                <field name="project_id"/>
+                                <field name="task_id" domain="[('project_id', '=', project_id)]"/>
+                            </group>
+                            <group>
+                                <field name="category_timesheet" groups="project.group_project_manager"/>
+                                <field name="description"/>
+                                <field name="duration"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cwl_module.action_operation_time_entry">
+            <field name="name">Time Entry</field>
+            <field name="res_model">cwl.module.timesheet.approval</field>
+            <field name="search_view_id" ref="timesheet_view_search"/>
+            <field name="context">{"search_default_status_pending":1}</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!--    OPERATIONS : MATERIAL ENTRY-->
+
+        <!-- Start Search View -->
+
+        <record id="material_view_search" model="ir.ui.view">
+            <field name="name">material.view.search</field>
+            <field name="model">cwl.module.material.approval</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="Confirmation Pending" name="status_pending" domain="[('status', '=', 'pending')]"/>
+                    <filter string="Approved" name="status_approved" domain="[('status', '=', 'approved')]"/>
+                </search>
+            </field>
+        </record>
+
+        <!--   END Search View     -->
+
+        <record model="ir.ui.view" id="cwl_module.view_operation_material_entry_tree">
+            <field name="name">material entry</field>
+            <field name="model">cwl.module.material.approval</field>
+            <field name="arch" type="xml">
+                <tree string="Material Entry">
+                    <field name="material_entry_id"/>
+                    <field name="date"/>
+                    <field name="employee_id"/>
+                    <field name="sale_id"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="cwl_module.view_operation_material_entry_form">
+            <field name="name">Material Entry</field>
+            <field name="model">cwl.module.material.approval</field>
+            <field name="arch" type="xml">
+                <form string="Material Entry">
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                        <button string="Confirm" class="oe_highlight" type="object" name="approve_material" groups="project.group_project_manager"
+                                attrs="{'invisible': [('status', '=', 'approved')]}"/>
+                        <button name="back_to_web" type="object" string="Home" class="oe_highlight" sequence="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="material_entry_id"/>
+                            </h1>
+                        </div>
+                        <br/>
+                        <group>
+                            <group>
+                                <field name="date" readonly="1"/>
+                                <field name="employee_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="sale_id" required="1"/>
+                                <field name="button_hide" invisible="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="material_list_ids" string="List Of Materials">
+                                <tree editable="bottom">
+                                    <field name="product_id" required="1"/>
+                                    <field name="lot_ids" domain="[('product_id', '=', product_id)]"/>
+                                    <field name="product_uom"/>
+                                    <field name="qty" required="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cwl_module.action_material_entry">
+            <field name="name">Material Entry</field>
+            <field name="res_model">cwl.module.material.approval</field>
+            <field name="search_view_id" ref="material_view_search"/>
+            <field name="context">{"search_default_status_pending":1}</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--     SALE ORDER INHERIT       -->
+        <record id="inherited_sale_form" model="ir.ui.view">
+            <field name="name">inherited.sale.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//field[@name='name']" position="after">
+                    <field name="lot_id"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="inhert_product_product_tree_view" model="ir.ui.view">
+            <field name="name">product.product.tree.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lst_price']" position="attributes">
+                    <attribute name="groups">project.group_project_manager</attribute>
+                </xpath>
+                <xpath expr="//field[@name='standard_price']" position="attributes">
+                    <attribute name="groups">project.group_project_manager</attribute>
+                </xpath>
+                <!--<tree string="Product Variants">-->
+                    <!--<field name="default_code"/>-->
+                    <!--<field name="name"/>-->
+                    <!--<field name="attribute_value_ids" widget="many2many_tags" groups="product.group_product_variant"/>-->
+                    <!--<field name="lst_price"/>-->
+                    <!--<field name="standard_price"/>-->
+                    <!--<field name="type" invisible="1"/>-->
+                    <!--<field name="price" invisible="not context.get('pricelist',False)"/>-->
+                    <!--<field name="uom_id" options="{'no_open': True, 'no_create': True}" groups="uom.group_uom"/>-->
+                    <!--<field name="barcode"/>-->
+                    <!--<field name="product_tmpl_id" invisible="1"/>-->
+                    <!--<field name="active" invisible="1"/>-->
+                <!--</tree>-->
+            </field>
+        </record>
+
+        <record id="stock_product_product_tree_view" model="ir.ui.view">
+            <field name="name">product.product.tree.stock</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.view_stock_product_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='qty_available']" position="attributes">
+                    <attribute name="groups">project.group_project_manager</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>
