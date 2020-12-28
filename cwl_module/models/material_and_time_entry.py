@@ -156,3 +156,16 @@ class SaleOrderInherit(models.Model):
     _inherit = 'sale.order.line'
 
     lot_id = fields.Many2one('stock.production.lot', string='Lots/Serial Numbers')
+
+
+class ProjectProjectInherit(models.Model):
+    _inherit = 'project.project'
+
+    @api.model
+    def create(self, vals):
+        result = super(ProjectProjectInherit, self).create(vals)
+        if result:
+            stage_id=self.env['project.task.type'].sudo().search([])
+            for stage in stage_id:
+                stage.write({'project_ids':[(4, result.id, None)]})
+        return result
