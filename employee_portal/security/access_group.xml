@@ -26,11 +26,25 @@
         <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
     </record>
 
+    <record id="cwl_group_manager_rule_quality" model="ir.rule">
+            <field name="name">CWL Quality all wishlist</field>
+            <field name="model_id" ref="cwl_module.model_cwl_module_quality_ior"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('employee_portal.group_manager_user'))]"/>
+    </record>
+
     <record id="cwl_group_portal_rule_nearmiss" model="ir.rule">
         <field name="name">CWL Nearmiss Documents</field>
         <field ref="cwl_module.model_cwl_module_safety_nearmiss" name="model_id"/>
         <field name="domain_force">[('create_uid','=', user.id)]</field>
         <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+    <record id="cwl_group_manager_rule_nearmiss" model="ir.rule">
+            <field name="name">CWL Nearmiss all wishlist</field>
+            <field name="model_id" ref="cwl_module.model_cwl_module_safety_nearmiss"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('employee_portal.group_manager_user'))]"/>
     </record>
 
     <record id="cwl_group_portal_rule_toolbox" model="ir.rule">
@@ -40,11 +54,25 @@
         <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
     </record>
 
+    <record id="cwl_group_manager_rule_toolbox" model="ir.rule">
+            <field name="name">CWL toolbox all wishlist</field>
+            <field name="model_id" ref="cwl_module.model_cwl_module_safety_toolbox"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('employee_portal.group_manager_user'))]"/>
+    </record>
+
     <record id="cwl_group_portal_rule_hazard" model="ir.rule">
         <field name="name">CWL hazard Documents</field>
         <field ref="cwl_module.model_cwl_module_safety_hazard" name="model_id"/>
         <field name="domain_force">[('create_uid','=', user.id)]</field>
         <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+    <record id="cwl_group_manager_rule_hazard" model="ir.rule">
+            <field name="name">CWL hazard all wishlist</field>
+            <field name="model_id" ref="cwl_module.model_cwl_module_safety_hazard"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('employee_portal.group_manager_user'))]"/>
     </record>
 
     <record id="cwl_group_portal_rule_firstaid" model="ir.rule">
@@ -53,12 +81,26 @@
         <field name="domain_force">[('create_uid','=', user.id)]</field>
         <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
     </record>
+    model_cwl_module_material_approval
+    <record id="cwl_group_manager_rule_firstaid" model="ir.rule">
+            <field name="name">CWL Firstaid all wishlist</field>
+            <field name="model_id" ref="cwl_module.model_cwl_module_safety_firstaid"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('employee_portal.group_manager_user'))]"/>
+    </record>
 
     <record id="cwl_group_manager_rule_incident" model="ir.rule">
         <field name="name">CWL Incident Documents</field>
         <field ref="cwl_module.model_cwl_module_safety_incident" name="model_id"/>
         <field name="domain_force">[('create_uid','=', user.id)]</field>
         <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+    model_cwl_module_material_approval
+    <record id="cwl_group_manager_rule_incident" model="ir.rule">
+            <field name="name">CWL Incident all wishlist</field>
+            <field name="model_id" ref="cwl_module.model_cwl_module_safety_incident"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('employee_portal.group_manager_user'))]"/>
     </record>
 
     <record id="cwl_group_manager_rule_time" model="ir.rule">
@@ -68,11 +110,25 @@
         <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
     </record>
 
+    <record id="cwl_group_manager_rule_time" model="ir.rule">
+            <field name="name">CWL Time all wishlist</field>
+            <field name="model_id" ref="cwl_module.model_cwl_module_timesheet_approval"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('employee_portal.group_manager_user'))]"/>
+    </record>
+
     <record id="cwl_group_manager_rule_material" model="ir.rule">
         <field name="name">CWL Material documents</field>
         <field ref="cwl_module.model_cwl_module_material_approval" name="model_id"/>
         <field name="domain_force">[('create_uid','=', user.id)]</field>
         <field name="groups" eval="[(4, ref('employee_portal.group_portal_user'))]"/>
+    </record>
+
+    <record id="cwl_group_manager_rule_material" model="ir.rule">
+            <field name="name">CWL Material all wishlist</field>
+            <field name="model_id" ref="cwl_module.model_cwl_module_material_approval"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('employee_portal.group_manager_user'))]"/>
     </record>
 
 </odoo>

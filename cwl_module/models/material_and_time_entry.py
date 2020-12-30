@@ -28,12 +28,12 @@ class timesheet_entry(models.Model):
         return result
 
     def approve_timesheet(self):
-        group = self.env['res.groups'].search([('name', '=', 'Portal User')])
-        is_desired_group = self.env.user.id in group.users.ids
-        if is_desired_group is True:
-            raise ValidationError(_("Please contact your system Administration."))
-        else:
-            pass
+        # group = self.env['res.groups'].search([('name', '=', 'Portal User')])
+        # is_desired_group = self.env.user.id in group.users.ids
+        # if is_desired_group is True:
+        #     raise ValidationError(_("Please contact your system Administration."))
+        # else:
+        #     pass
         if self.status == 'pending':
             employee = self.env['hr.employee'].search([('user_id', '=', self.employee_id.id)])
             time_sheet = self.env['account.analytic.line'].create({
@@ -81,12 +81,12 @@ class Material_Entry(models.Model):
         return result
 
     def approve_material(self):
-        group = self.env['res.groups'].search([('name', '=', 'Portal User')])
-        is_desired_group = self.env.user.id in group.users.ids
-        if is_desired_group is True:
-            raise ValidationError(_("Please contact your system Administration."))
-        else:
-            pass
+        # group = self.env['res.groups'].search([('name', '=', 'Portal User')])
+        # is_desired_group = self.env.user.id in group.users.ids
+        # if is_desired_group is True:
+        #     raise ValidationError(_("Please contact your system Administration."))
+        # else:
+        #     pass
         sale_order = self.env['sale.order'].search([('id', '=', self.sale_id.id)])
         if self.status == 'pending':
             for rec in self.material_list_ids:
